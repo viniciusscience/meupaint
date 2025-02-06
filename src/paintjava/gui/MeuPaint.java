@@ -9,7 +9,7 @@ package paintjava.gui;
  * @author vinicius
  */
 public class MeuPaint extends javax.swing.JFrame {
-    
+
     private int xPress;
     private int yPress;
 
@@ -117,28 +117,31 @@ public class MeuPaint extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void painelDesenho1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelDesenho1MousePressed
-        
+
         xPress = evt.getX();
         yPress = evt.getY();
-        
+
 
     }//GEN-LAST:event_painelDesenho1MousePressed
 
     private void painelDesenho1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelDesenho1MouseReleased
         FormaGeometrica forma = null;
-        
+
         if (btnLinha.isSelected()) {
             forma = new Linha();
-            
+
         } else if (btnRetangulo.isSelected()) {
-            
+
             forma = new Retangulo();
-            
+
+        } else {
+            forma = new Elipse();
         }
+        
         painelDesenho1.setFormaTemporaria(null);
         painelDesenho1.addFormas(forma);
         setCoord(forma, xPress, yPress, evt);
-        
+
         painelDesenho1.repaint();
     }//GEN-LAST:event_painelDesenho1MouseReleased
 
@@ -146,15 +149,17 @@ public class MeuPaint extends javax.swing.JFrame {
         FormaGeometrica formaTemp = null;
         if (btnLinha.isSelected()) {
             formaTemp = new Linha();
-            
+
         } else if (btnRetangulo.isSelected()) {
-            
+
             formaTemp = new Retangulo();
-            
+
+        } else {
+            formaTemp = new Elipse();
         }
-        
+
         setCoord(formaTemp, xPress, yPress, evt);
-        
+
         painelDesenho1.setFormaTemporaria(formaTemp);
         painelDesenho1.repaint();
 
@@ -167,14 +172,14 @@ public class MeuPaint extends javax.swing.JFrame {
     private void btnRetanguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetanguloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRetanguloActionPerformed
-    
+
     public void setCoord(FormaGeometrica form, int xPress, int yPress, java.awt.event.MouseEvent evt) {
-        
+
         form.setxInicial(xPress);
         form.setyInicial(yPress);
         form.setxFinal(evt.getX());
         form.setyFinal(evt.getY());
-        
+
         painelDesenho1.setFormaTemporaria(form);
     }
 
@@ -209,7 +214,7 @@ public class MeuPaint extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MeuPaint().setVisible(true);
-                
+
             }
         });
     }
